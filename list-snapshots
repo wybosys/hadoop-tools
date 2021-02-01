@@ -15,7 +15,7 @@ def all(dir: str, args) -> List[str]:
         pat = re.compile("%s/.snapshot/(.+)" % dir)
         for each in res.split("\n"):
             fnd = pat.findall(each)
-            if not fnd:
+            if fnd:
                 names.append(fnd[0])
     return names
 
