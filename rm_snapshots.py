@@ -20,6 +20,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     res = list_snapshots.all(args.target, args.docker)
     for each in res:
-        inp = input("确认删除 %s [n/y]? " % each)
-        if inp == 'y':
+        inp = input("确认删除 %s [y]/n? " % each)
+        if inp != 'n':
             delete(args.target, each, args.docker)
