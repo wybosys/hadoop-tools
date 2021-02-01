@@ -3,8 +3,7 @@
 import argparse
 from typing import *
 import sys
-import os
-import subprocess
+import re
 from config import *
 
 
@@ -13,8 +12,11 @@ def all(dir: str, args) -> List[str]:
     res = Run(cmd, args.docker)
     names = []
     if res != None:
+        pat = re.compile("%s/.snapshot/(.+)" % dir)
         for each in res.split("\n"):
-            names.append(each)
+            fnd = pat.findall(each)
+            if not fnd:
+                names.append(fnd[0])
     return names
 
 
