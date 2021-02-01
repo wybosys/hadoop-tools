@@ -11,7 +11,11 @@ from config import *
 def all(dir: str, args) -> List[str]:
     cmd = "%s/bin/hdfs dfs -ls %s/.snapshot" % (HDP_HOME, dir)
     res = Run(cmd, args.docker)
-    return res
+    names = []
+    if res != None:
+        for each in res.split("\n"):
+            names.append(each)
+    return names
 
 
 if __name__ == '__main__':
