@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 
+import argparse
+from typing import *
 import sys
 import os
+import subprocess
 from config import *
 
-if len(sys.argv) == 1:
-    print("usage: list-snapshots /xxxx")
-    exit
 
-target_dir = sys.argv[1]
-cmd = "%s/bin/hdfs dfs -ls %s/.snapshot" % (HDP_HOME, target_dir)
-os.system(cmd)
+def all(dir: str, args) -> List[str]:
+    cmd = "%s/bin/hdfs dfs -ls %s/.snapshot" % (HDP_HOME, dir)
+    res = Run(cmd, args.docker)
+    return res
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="列出指定目录下的snapshot")
+    parser.add_argument(dest='target')
+    parser.add_argument('-d', dest='docker',
+                        action='store_true', help='docker模式')
+    args = parser.parse_args()
+    res = all(args.target, args)
+    print(res)
