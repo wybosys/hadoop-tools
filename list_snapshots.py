@@ -7,9 +7,9 @@ import re
 from config import *
 
 
-def all(dir: str, args) -> List[str]:
+def all(dir: str, docker: bool) -> List[str]:
     cmd = "%s/bin/hdfs dfs -ls %s/.snapshot" % (HDP_HOME, dir)
-    res = Run(cmd, args.docker)
+    res = Run(cmd, docker)
     names = []
     if res != None:
         pat = re.compile("%s/.snapshot/(.+)" % dir)
@@ -26,5 +26,5 @@ if __name__ == '__main__':
     parser.add_argument('-d', dest='docker',
                         action='store_true', help='docker模式')
     args = parser.parse_args()
-    res = all(args.target, args)
+    res = all(args.target, args.docker)
     print(res)
