@@ -6,7 +6,7 @@ import argparse
 
 
 def delete(dir: str, ss: str, docker: bool) -> bool:
-    cmd = "%s/bin/hdfs dfs -deleteSnaphost %s/.snapshot/%s" % (
+    cmd = "%s/bin/hdfs dfs -deleteSnaphost %s/.snapshot %s" % (
         HDP_HOME, dir, ss)
     res = Run(cmd, docker)
     return res != None
@@ -20,6 +20,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     res = list_snapshots.all(args.target, args.docker)
     for each in res:
-        inp = input("确认删除 %s [N/Y]" % each)
+        inp = input("确认删除 %s [N/Y]? " % each)
         if inp == 'Y':
             delete(args.target, each, args.docker)
