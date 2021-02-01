@@ -26,6 +26,7 @@ if __name__ == '__main__':
         while len(res) > args.count:
             print("移除 %s" % res[0])
             rm_snapshots.delete(args.target, res[0], args.docker)
+            res = res[1:]
 
     print("生成新的")
     make(args.target, args.docker)
