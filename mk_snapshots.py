@@ -7,7 +7,7 @@ from config import *
 
 
 def make(dir: str, docker: bool) -> bool:
-    cmd = "%s/bin/hdfs dfs -createSnapsshot %s" % (HDP_HOME, dir)
+    cmd = "%s/bin/hdfs dfs -createSnapshot %s" % (HDP_HOME, dir)
     res = Run(cmd, docker)
     return res != None
 
