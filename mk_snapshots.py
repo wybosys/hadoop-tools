@@ -18,7 +18,7 @@ if __name__ == '__main__':
     parser.add_argument('-d', dest='docker',
                         action='store_true', help='docker模式')
     parser.add_argument('-c', dest='count', action='store',
-                        help='最多有几个历史版本', default=-1)
+                        help='最多有几个历史版本', default=-1, type=int)
     args = parser.parse_args()
 
     if args.count > 0:
