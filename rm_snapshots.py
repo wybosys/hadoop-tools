@@ -6,7 +6,7 @@ import argparse
 
 
 def delete(dir: str, ss: str, docker: bool) -> bool:
-    cmd = "%s/bin/hdfs dfs -deleteSnapshot %s/.snapshot %s" % (
+    cmd = "%s/bin/hdfs dfs -deleteSnapshot %s %s" % (
         HDP_HOME, dir, ss)
     res = Run(cmd, docker)
     return res != None
