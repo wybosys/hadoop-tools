@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+from config import *
+
+if len(sys.argv) == 1:
+    print("usage: list-snapshots /xxxx")
+    exit
+
+target_dir = sys.argv[1]
+cmd = "%s/bin/hdfs dfs -ls %s/.snapshot" % (HDP_HOME, target_dir)
+os.system(cmd)
